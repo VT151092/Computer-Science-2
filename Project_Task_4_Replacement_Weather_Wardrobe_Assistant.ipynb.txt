@@ -1,0 +1,255 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Project Task 4 Replacement: Weather Wardrobe Assistant\n",
+        "\n",
+        "Create a command-line program in Python that asuggests what to wear based on the weather. This program includes user login, menu interaction, and personalized clothing recommendations based on user input."
+      ],
+      "metadata": {
+        "id": "pWf9hfyYUV2O"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "IGjrJkyfT-Nd"
+      },
+      "outputs": [],
+      "source": [
+        "#1. User Login System\n",
+        "# set the valid username and password\n",
+        "v_username = \"106\"\n",
+        "v_password = \"1qi7\"\n",
+        "\n",
+        "# create the login function\n",
+        "def login():\n",
+        "  attempts = 3  # Allow the user up to 3 attempts\n",
+        "  while attempts > 0:\n",
+        "    print(\"Welcome to the Weather Wardrobe Assistant!\")\n",
+        "    # Ask for username and password\n",
+        "    username = input(\"Enter your username: \")\n",
+        "    password = input(\"Enter your password: \")\n",
+        "    # check if the user input match the valid\n",
+        "    if username == v_username and password == v_password:\n",
+        "      print(\"Login successful!\")\n",
+        "      main_menu()  # If login is successful, go to the main menu\n",
+        "      break  # Exit the loop if login is successful\n",
+        "    else:  # if the user input not match the valid, decrease the try times\n",
+        "      attempts -= 1\n",
+        "      if attempts > 0:  # let the massage show when login fail, but not show in 0 attempt\n",
+        "        print(f\"Incorrect username or password, you have {attempts} attempt(s) left, placse try again!\")\n",
+        "  if attempts == 0:  # give massage to user about they cannot try now\n",
+        "\n",
+        "    print(\"Too many fail attempts, please try again later.\")"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2. Main Menu\n",
+        "def main_menu():\n",
+        "  while True:  # make a loop to let menu keep show until exit\n",
+        "    print('Main Menu')\n",
+        "    print(\"1. Enter today's weather\")\n",
+        "    print(\"2. Get clothing suggestion\")\n",
+        "    print(\"3. Exit\")\n",
+        "\n",
+        "    # use the different function by different choice\n",
+        "    choice = input(\"Enter your choice (1/2/3): \")\n",
+        "    if choice == \"1\":  # run [weather_input(weather_d)] by input '1'\n",
+        "      weather_input(weather_d)\n",
+        "    elif choice == \"2\":  # run [clothing_suggestion(weather_d)] by input '2'\n",
+        "      clothing_suggestion(weather_d)\n",
+        "    elif choice == \"3\":\n",
+        "      print(\"Thank you for using. Goodbye!\")\n",
+        "      break # to exit the loop"
+      ],
+      "metadata": {
+        "id": "MjC8q6jvC0Xz"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#3. add the weather to the program\n",
+        "weather_d = []  # use the list to save the data\n",
+        "\n",
+        "def weather_input(weather_d):\n",
+        "  # ask user the temperature data\n",
+        "  temperature = float(input(\"Enter the temperature: \"))\n",
+        "  # ask the raining input and validate\n",
+        "  raining = input(\"Is it raining? (yes/no): \").strip().lower()\n",
+        "  if raining == \"yes\":\n",
+        "    raining = True\n",
+        "  elif raining == \"no\":\n",
+        "    raining = False\n",
+        "  else:\n",
+        "    print(\"Invalid input for raining. Please enter 'yes' or 'no'.\")\n",
+        "    return # exit the function if invalid input\n",
+        "\n",
+        "  windy = input(\"Is it windy? (yes/no): \").strip().lower()\n",
+        "  if windy == \"yes\":\n",
+        "    windy = True\n",
+        "  elif windy == \"no\":\n",
+        "    windy = False\n",
+        "  else:\n",
+        "    print(\"Invalid input for windy. Please enter 'yes' or 'no'.\")\n",
+        "    return # exit the function if invalid input\n",
+        "\n",
+        "  # set the format for show the data\n",
+        "  weather = {\n",
+        "      'temperature': temperature,\n",
+        "      'raining': raining,\n",
+        "      'windy': windy\n",
+        "  }\n",
+        "  weather_d.append(weather)  #add the data to the list\n",
+        "  print('-'*30)\n",
+        "  print(f\"Temperature: {temperature}°C\")\n",
+        "  print(f\"Raining: {'Yes' if raining else 'No'}\")\n",
+        "  print(f\"Windy: {'Yes' if windy else 'No'}\")\n",
+        "  print('-'*30)\n",
+        "  return weather_d  # return the weather data to the main menu"
+      ],
+      "metadata": {
+        "id": "D_G18mWHEnYd"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#4. give the clothing suggestions\n",
+        "def clothing_suggestion(weather_d):\n",
+        "  # generate the clothing suggestions by weather data\n",
+        "  if not weather_d:\n",
+        "    print(\"Please enter today's weather first.\")\n",
+        "    return\n",
+        "\n",
+        "  weather = weather_d[-1]  #use the new data form weather_d\n",
+        "  temperature = weather['temperature']  # take data form list and use for this function\n",
+        "  raining = weather['raining']\n",
+        "  windy = weather['windy']\n",
+        "\n",
+        "  # set the basic massage of suggestion then add other part to here\n",
+        "  suggestion = 'For the current weather we suggest wear: '\n",
+        "\n",
+        "  if temperature < 10:  #check the range of temperature and give match suggest\n",
+        "    suggestion += 'Warm coat, gloves, scarf.'\n",
+        "  elif 10<= temperature < 20:\n",
+        "    suggestion += 'Jacket, long sleeve shirt, trousers.'\n",
+        "  else:\n",
+        "    suggestion += 'Light clothes such as T-shirt, short pants.'\n",
+        "  print('-'*30)\n",
+        "  print(suggestion)\n",
+        "\n",
+        "  if raining:  #print the other massage in second line\n",
+        "    print('Remember the umbrella.')\n",
+        "\n",
+        "  if windy:\n",
+        "    print('And make sure you wear clothing that blocks out the wind.')\n",
+        "\n",
+        "  print('-'*30)"
+      ],
+      "metadata": {
+        "id": "RTzPrKmW9AcH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# run the program\n",
+        "login()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "o2lJIVUuZUab",
+        "outputId": "fc82f7db-a1c8-41e6-cda6-438f2442e82a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Welcome to the Weather Wardrobe Assistant!\n",
+            "Enter your username: 106\n",
+            "Enter your password: 1qi7\n",
+            "Login successful!\n",
+            "Main Menu\n",
+            "1. Enter today's weather\n",
+            "2. Get clothing suggestion\n",
+            "3. Exit\n",
+            "Enter your choice (1/2/3): 1\n",
+            "Enter the temperature: 9\n",
+            "Is it raining? (yes/no): no\n",
+            "Is it windy? (yes/no): yes\n",
+            "------------------------------\n",
+            "Temperature: 9.0°C\n",
+            "Raining: No\n",
+            "Windy: Yes\n",
+            "------------------------------\n",
+            "Main Menu\n",
+            "1. Enter today's weather\n",
+            "2. Get clothing suggestion\n",
+            "3. Exit\n",
+            "Enter your choice (1/2/3): 2\n",
+            "------------------------------\n",
+            "For the current weather we suggest wear: Warm coat, gloves, scarf.\n",
+            "And make sure you wear clothing that blocks out the wind.\n",
+            "------------------------------\n",
+            "Main Menu\n",
+            "1. Enter today's weather\n",
+            "2. Get clothing suggestion\n",
+            "3. Exit\n",
+            "Enter your choice (1/2/3): 1\n",
+            "Enter the temperature: 13\n",
+            "Is it raining? (yes/no): no\n",
+            "Is it windy? (yes/no): Yes\n",
+            "------------------------------\n",
+            "Temperature: 13.0°C\n",
+            "Raining: No\n",
+            "Windy: Yes\n",
+            "------------------------------\n",
+            "Main Menu\n",
+            "1. Enter today's weather\n",
+            "2. Get clothing suggestion\n",
+            "3. Exit\n",
+            "Enter your choice (1/2/3): 2\n",
+            "------------------------------\n",
+            "For the current weather we suggest wear: Jacket, long sleeve shirt, trousers.\n",
+            "And make sure you wear clothing that blocks out the wind.\n",
+            "------------------------------\n",
+            "Main Menu\n",
+            "1. Enter today's weather\n",
+            "2. Get clothing suggestion\n",
+            "3. Exit\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
