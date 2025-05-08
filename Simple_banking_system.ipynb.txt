@@ -1,0 +1,183 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Build a simple banking system"
+      ],
+      "metadata": {
+        "id": "VpsU0NjhPksh"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "saCUM89Cuq59"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#step 1. check the user login\n",
+        "attempts = 0 #attempts for limit the times of try\n",
+        "balance = 1000 #balance is the basic number of money in account\n",
+        "\n",
+        "# use while loop to check number of attempts\n",
+        "# tihs works in the following way: while condition is true keep asking input from user, however when attempts=3 log user out\n",
+        "while attempts < 3:\n",
+        "  username = input(\"Enter Username\")  #to ask user the username\n",
+        "  password = input(\"Enter Password\")  #to ask user the password\n",
+        "\n",
+        "  if username == \"11\" and password == \"123\":  #create the basic username and password to check\n",
+        "   print(\"Login successful\")\n",
+        "   break #if password and username correct, exit loop and show main menu\n",
+        "\n",
+        "# if the input from user is wrong, increase the attempts, if attempts=3, log user out\n",
+        "  else:\n",
+        "    attempts += 1\n",
+        "    print('Wrong details. Try again.')\n",
+        "\n",
+        "# give massage to user let it know the chance is over\n",
+        "if attempts == 3:\n",
+        "  print('You tried too many times. Contact bank.')\n",
+        "\n",
+        "#step 2. create the main menu\n",
+        "# when the login check is clear, show the different functions of system and let user choice the action his wanted\n",
+        "else:\n",
+        "  #step 4. use looping logic to keep showing the main menu until user chooses to exit\n",
+        "  while True:  #[while True] let the options always show after the action\n",
+        "    print('Main menu')\n",
+        "    print('1. Balance')\n",
+        "    print('2. Deposit')\n",
+        "    print('3. Withdraw')\n",
+        "    print('4. Exit')\n",
+        "\n",
+        "# step3. create the function of system which are menu show\n",
+        "# step4. to check the validating in [deposit], [withdraw] by[if/elif/else]\n",
+        "    # asking user which functions he want to use\n",
+        "    choice = input('Enter your choice(1/2/3/4):')\n",
+        "\n",
+        "    # [balance] is for show the balance in the account\n",
+        "    # when input(1), show the balance\n",
+        "    if choice == '1':\n",
+        "      print('Balance:', balance)\n",
+        "\n",
+        "    # [deposit] is to increase the balance in the account\n",
+        "    # [elif] let system use other function when the input is(2)\n",
+        "    elif choice == '2':\n",
+        "      #ask user how much he want to deposit to the account\n",
+        "      deposit = float(input('Enter amount to deposit:'))\n",
+        "      #system needs to check that money to deposit is positive. If not, ask bank.\n",
+        "      # when deposit>0, the money can save in account\n",
+        "      if deposit > 0:\n",
+        "        balance += deposit #calculate the new balance after deposit\n",
+        "        #give massage to let user know the action is successful and show the new balance\n",
+        "        print('Deposit successful. New balance:', balance)\n",
+        "\n",
+        "      # let the [depoait] will not let the balance decrease\n",
+        "      # give massage about the action is fail to user\n",
+        "      else:\n",
+        "        print('Invalid amount. Deposit failed.')\n",
+        "\n",
+        "    # [withdraw] is for user take his money from his account\n",
+        "    elif choice == '3':\n",
+        "      # asking user how much he want to take\n",
+        "      withdraw = float(input('Enter amount to withdraw:'))\n",
+        "      #to check user account have enough money to let he take\n",
+        "      if withdraw <= balance:\n",
+        "        # if user can take his money, clculate the new balance and give massage about action successful and new balance\n",
+        "        balance -= withdraw\n",
+        "        print('Withdrawal successful. New balance:', balance)\n",
+        "      #to stop [withdraw] if user account have not enough money\n",
+        "      else:\n",
+        "       if withdraw >= balance:\n",
+        "        print('Insufficient funds.')\n",
+        "\n",
+        "    # to stop all functions of system\n",
+        "    elif choice == '4':\n",
+        "      print('Exit')\n",
+        "#[break] is for end the while loop, let system stop keeping show the main menu and asking user what functions they eant to use\n",
+        "      break\n",
+        "\n",
+        "    #let the user know their input in choice are wrong\n",
+        "    else:\n",
+        "      print('Invalid choice. Please try again.')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "voiYyM93Pmuu",
+        "outputId": "67ac220f-5542-4685-f7c8-52f62b035d6b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter Username40\n",
+            "Enter Password40\n",
+            "Wrong details. Try again.\n",
+            "Enter Username11\n",
+            "Enter Password123\n",
+            "Login successful\n",
+            "Main menu\n",
+            "1. Balance\n",
+            "2. Deposit\n",
+            "3. Withdraw\n",
+            "4. Exit\n",
+            "Enter your choice(1/2/3/4):1\n",
+            "Balance: 1000\n",
+            "Main menu\n",
+            "1. Balance\n",
+            "2. Deposit\n",
+            "3. Withdraw\n",
+            "4. Exit\n",
+            "Enter your choice(1/2/3/4):2\n",
+            "Enter amount to deposit:100\n",
+            "Deposit successful. New balance: 1100.0\n",
+            "Main menu\n",
+            "1. Balance\n",
+            "2. Deposit\n",
+            "3. Withdraw\n",
+            "4. Exit\n",
+            "Enter your choice(1/2/3/4):2\n",
+            "Enter amount to deposit:2025\n",
+            "Deposit successful. New balance: 3125.0\n",
+            "Main menu\n",
+            "1. Balance\n",
+            "2. Deposit\n",
+            "3. Withdraw\n",
+            "4. Exit\n",
+            "Enter your choice(1/2/3/4):3\n",
+            "Enter amount to withdraw:555\n",
+            "Withdrawal successful. New balance: 2570.0\n",
+            "Main menu\n",
+            "1. Balance\n",
+            "2. Deposit\n",
+            "3. Withdraw\n",
+            "4. Exit\n",
+            "Enter your choice(1/2/3/4):4\n",
+            "Exit\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

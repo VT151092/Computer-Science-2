@@ -1,0 +1,417 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Project: Movie Library System"
+      ],
+      "metadata": {
+        "id": "-xlUbOXmM8R3"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#step 1:\n",
+        "movie_library = []\n",
+        "\n",
+        "#Create the Movie Library\n",
+        "movie_example = {\n",
+        "    'title': 'a', #Movie_title\n",
+        "    'year': 'b', #Release_year\n",
+        "    'genres': 'c', #elements\n",
+        "    'rating': (0,0), #Rating_score,number of reviews\n",
+        "    'reviews':{  #Users in key, text in value\n",
+        "        'user1': 'review1',\n",
+        "        'user2': 'review2'\n",
+        "    }\n",
+        "}\n"
+      ],
+      "metadata": {
+        "id": "xiKdlxeCNGSi"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#step 2:\n",
+        "movie1 = {\n",
+        "    'title': 'Inception',\n",
+        "    'year': 2010,\n",
+        "    'genres': ['Action','Sci-Fi'],\n",
+        "    'rating': (4.5, 1500),\n",
+        "    'reviews': {}\n",
+        "}\n",
+        "movie_library.append(movie1) # add movie1 to movie_library list\n",
+        "\n",
+        "movie2 = {\n",
+        "    'title': 'Titanic',\n",
+        "    'year': 1997,\n",
+        "    'genres': ['Romance','Drama'],\n",
+        "    'rating': (4.7, 2000),\n",
+        "    'reviews': {}\n",
+        "}\n",
+        "\n",
+        "movie3 = {\n",
+        "    'title': 'The Matrix',\n",
+        "    'year': '1999',\n",
+        "    'genres': ['Action','Sci-Fi'],\n",
+        "    'rating': (4.8, 1800),\n",
+        "    'reviews': {}\n",
+        "}\n",
+        "\n",
+        "movie_library.append(movie2)  # add movie2 to movie_library list\n",
+        "movie_library.append(movie3)  # add movie3 to movie_library list"
+      ],
+      "metadata": {
+        "id": "_60ip_ppR3qc"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# step 3: View all movies in the library\n",
+        "def view_movies():  #analysis the data in dictionary is match with which object\n",
+        "  for movie in movie_library:\n",
+        "    title = movie['title']\n",
+        "    year = movie['year']\n",
+        "    genres = movie['genres']\n",
+        "    rating_s = movie['rating'][0]\n",
+        "    rating_n = movie['rating'][1]\n",
+        "\n",
+        "    # set the format when view movies\n",
+        "    print(f\"Title: {title}, Year: {year}, Genres: {', '.join(genres)}, Rating: {rating_s}({rating_n} reviews)\")"
+      ],
+      "metadata": {
+        "id": "qqSTpvd00xKY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# step 4: Search Movies by Genre\n",
+        "def search_by_genre():\n",
+        "  genre_search = str(input(\"Enter a genre: \"))  #ask user which genre they want to search\n",
+        "  found = False #for marking the match data, when it found is [Ture],else is [False]\n",
+        "  for movie in movie_library:\n",
+        "    #Make sure to compare the genre_search in a case-insensitive way\n",
+        "    if genre_search in movie['genres']:  #let the data show with this format\n",
+        "      title = movie['title']\n",
+        "      year = movie['year']\n",
+        "      genres = movie['genres']\n",
+        "      print(f\"Title: {title}, Year: {year}, Genres: {','.join(genres)}\")\n",
+        "      found = True #let function stop searching\n",
+        "  if not found:\n",
+        "    print('not found')"
+      ],
+      "metadata": {
+        "id": "BVRgVpmY7ys5"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# step 5:View Details of a Specific Movie\n",
+        "def view_details():\n",
+        "  title_search = input(\"Enter a title: \") #ask user what movie they want to search\n",
+        "  for movie in movie_library: #search the data inside the list\n",
+        "    if title_search == movie['title']:\n",
+        "      print(f\"Title: {movie['title']}\")\n",
+        "      print(f\"Year: {movie['year']}\")\n",
+        "      print(f\"Genres:{','.join(movie['genres'])}\")\n",
+        "      print(f\"Rating: {movie['rating'][0]} ({movie['rating'][1]} reviews)\")\n",
+        "      print(\"Reviews:\")\n",
+        "      for reviewer, review_text in movie['reviews'].items():\n",
+        "        print(f\"{reviewer}: {review_text}\")\n",
+        "        return\n",
+        "        if movie['reviews'] == {}:\n",
+        "          print('no reviews')\n",
+        "  else:\n",
+        "    print('not found')"
+      ],
+      "metadata": {
+        "id": "NBQVBZjPCezj"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# step 6:Add a review to a movie\n",
+        "def add_review():\n",
+        "    # Let the user input the movie title, reviewer name, and review text\n",
+        "    title_search = input(\"Enter the movie title you want to review: \")\n",
+        "    reviewer = input(\"Enter your name: \")\n",
+        "    review_text = input(\"Enter your review: \")\n",
+        "\n",
+        "    for movie in movie_library:\n",
+        "        if movie['title'] == title_search:\n",
+        "          reviews = {\n",
+        "              reviewer : review_text\n",
+        "          }\n",
+        "            # Add the review to the movie's reviews dictionary\n",
+        "          movie['reviews'].update(reviews)\n",
+        "            # Update the movie's rating (assuming the new review gives a perfect score of 5 stars)\n",
+        "          new_rating = (5.0, movie['rating'][1] + 1)  # Each new review gives a perfect score\n",
+        "          movie['rating'] = new_rating\n",
+        "          print(f\"Review added for '{title_search}' by {reviewer}.\")\n",
+        "          return\n",
+        "\n",
+        "    else:\n",
+        "        print(f\"Movie titled '{title_search}' not found.\")\n",
+        "\n",
+        "\n",
+        "#Inception\n",
+        "#Eve\n",
+        "#An incredibly imaginative movie that makes you think."
+      ],
+      "metadata": {
+        "id": "NVs38BMseJTm"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Step 7: Calculate and Display the Average Rating\n",
+        "def calculate_average_rating(library):\n",
+        "    total_ratings = 0  #set number for calculate\n",
+        "    total_reviews = 0\n",
+        "    for movie in library:\n",
+        "        num_reviews = int(movie['rating'][1])  #use data from dictionaries\n",
+        "        total_ratings += movie['rating'][0] * num_reviews\n",
+        "        total_reviews += num_reviews\n",
+        "    average_rating = total_ratings / total_reviews if total_reviews else 0\n",
+        "    print(f\"Average Rating of All Movies: {average_rating:.2f}\")\n",
+        "    return average_rating\n",
+        "\n",
+        "calculate_average_rating(movie_library)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jMg0CQ9viUK8",
+        "outputId": "d8d6bc70-e447-46b4-ff4c-55a28d6fb950"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Average Rating of All Movies: 4.72\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4.718461538461538"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 40
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Step 8: Test the program"
+      ],
+      "metadata": {
+        "id": "r2feu5zflfsC"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# add the movie\n",
+        "movie4 = {\n",
+        "    'title': 'The Shawshank Redemption',\n",
+        "    'year': 1994,\n",
+        "    'genres': ['Drama'],\n",
+        "    'rating': (4.9, 1200),\n",
+        "    'reviews': {}\n",
+        "}\n",
+        "movie_library.append(movie4)\n",
+        "view_movies()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MdIOXcc4l12Q",
+        "outputId": "25c1fa99-a7f1-4ae2-8662-44187d638972"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Title: Inception, Year: 2010, Genres: Action, Sci-Fi, Rating: 4.5(1500 reviews)\n",
+            "Title: Titanic, Year: 1997, Genres: Romance, Drama, Rating: 4.7(2000 reviews)\n",
+            "Title: The Matrix, Year: 1999, Genres: Action, Sci-Fi, Rating: 4.8(1800 reviews)\n",
+            "Title: The Shawshank Redemption, Year: 1994, Genres: Drama, Rating: 4.9(1200 reviews)\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# view all the movie and specific movie details\n",
+        "view_movies()\n",
+        "view_details()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "REt_j1Domqbe",
+        "outputId": "3b3541ef-3b95-41f3-9ba5-3e5ec6b79b9f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Title: Inception, Year: 2010, Genres: Action, Sci-Fi, Rating: 4.5(1500 reviews)\n",
+            "Title: Titanic, Year: 1997, Genres: Romance, Drama, Rating: 4.7(2000 reviews)\n",
+            "Title: The Matrix, Year: 1999, Genres: Action, Sci-Fi, Rating: 4.8(1800 reviews)\n",
+            "Title: The Shawshank Redemption, Year: 1994, Genres: Drama, Rating: 4.9(1200 reviews)\n",
+            "Enter a title: The Matrix\n",
+            "Title: The Matrix\n",
+            "Year: 1999\n",
+            "Genres:Action,Sci-Fi\n",
+            "Rating: 4.8 (1800 reviews)\n",
+            "Reviews:\n",
+            "not found\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# search by genre\n",
+        "search_by_genre()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LEiukXMgnBi_",
+        "outputId": "67c318e6-85c1-4728-8135-ce3499be74b1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter a genre: Sci-Fi\n",
+            "Title: Inception, Year: 2010, Genres: Action,Sci-Fi\n",
+            "Title: The Matrix, Year: 1999, Genres: Action,Sci-Fi\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#add reviewa and see the update rating\n",
+        "add_review()\n",
+        "view_details()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-lEP2VQ8nK1x",
+        "outputId": "0d29770a-6911-403d-eb61-62079e00c1c0"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter the movie title you want to review: Inception\n",
+            "Enter your name: Eve\n",
+            "Enter your review: An incredibly imaginative movie that makes you think.\n",
+            "Review added for 'Inception' by Eve.\n",
+            "Enter a title: Inception\n",
+            "Title: Inception\n",
+            "Year: 2010\n",
+            "Genres:Action,Sci-Fi\n",
+            "Rating: 5.0 (1501 reviews)\n",
+            "Reviews:\n",
+            "Eve: An incredibly imaginative movie that makes you think.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#calculate and display the average rating\n",
+        "calculate_average_rating(movie_library)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jcwUVdawnmlP",
+        "outputId": "75bb6761-026e-464d-8892-5204278b6c3c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Average Rating of All Movies: 4.83\n"
+          ]
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4.833871712044301"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 46
+        }
+      ]
+    }
+  ]
+}

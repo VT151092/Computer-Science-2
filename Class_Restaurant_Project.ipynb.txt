@@ -1,0 +1,238 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Instructions for Restaurant Ordering System Project\n",
+        "\n",
+        "Objective:\n",
+        "In this project, you will develop a Restaurant Ordering System that allows customers to place orders, view a menu, and calculate the total bill. The system will use Object-Oriented Programming (OOP) concepts, specifically classes, attributes, and\n",
+        "methods, to simulate how a restaurant processes customer orders."
+      ],
+      "metadata": {
+        "id": "A_ycu4Dp2S1R"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Create the main class\n",
+        "#1. create dish class\n",
+        "class Dish:\n",
+        "  #[__init__] is for setup the data format of Dish, which object should include,\n",
+        "  #  initializes the object's attributes.\n",
+        "  def __init__(self,name,price,category):\n",
+        "    self.name = name\n",
+        "    self.price = price\n",
+        "    self.category = category\n",
+        "\n",
+        "  #[__str__] is for define the behavior of an object when printed.\n",
+        "  def __str__(self):\n",
+        "    return f\"{self.name} ({self.category}) - £{self.price:.2f}\"\n",
+        "\n",
+        "#2. create order class\n",
+        "class Order:\n",
+        "  last_order_id = 0  #set the start count number, let the system can count the number of order\n",
+        "  def __init__(self,customer,status=\"Pending\"):\n",
+        "    Order.last_order_id += 1 # when one order have generate, it can count which order it is.\n",
+        "    self.order_id = Order.last_order_id\n",
+        "    self.customer = customer #set the class customer included to order\n",
+        "    self.ordered_dishes = [] # let the ordered_dishes become a list to include data from dish class.\n",
+        "    self.status = status #the basic status already set \"Pending\"\n",
+        "\n",
+        "  def add_dish(self,dish): # add the data from dish to ordered_dishes list\n",
+        "    self.ordered_dishes.append(dish)\n",
+        "\n",
+        "  def calculate_total(self): # to calculate the total price of order\n",
+        "    return sum(dish.price for dish in self.ordered_dishes)\n",
+        "\n",
+        "  def apply_discount(self,discount_threshold,discount_percentage): # discount function for decrease the total price\n",
+        "    if self.calculate_total() > discount_threshold:\n",
+        "      discount_amount = self.calculate_total() * (discount_percentage / 100)\n",
+        "      return self.calculate_total() - discount_amount\n",
+        "    else:\n",
+        "      return self.calculate_total()\n",
+        "\n",
+        "  def change_status(self,new_status=\"Completed\"):  # let status can update\n",
+        "    self.status = new_status\n",
+        "\n",
+        "  def view_order(self):  #show the data by this format\n",
+        "    print(f\"Order ID: {self.order_id}\")\n",
+        "    print(f\"Customer: {self.customer.name}\")\n",
+        "    print(\"Ordered Dishes:\")\n",
+        "    for dish in self.ordered_dishes:\n",
+        "      print(f\" - {dish}\")\n",
+        "      print(f\"status:{self.status}\")\n",
+        "    # total can out of the loop\n",
+        "    print(f\"Total: £{self.calculate_total():.2f}\\n\")\n",
+        "\n",
+        "#3. create customer class\n",
+        "class Customer:\n",
+        "  def __init__(self,name,email):\n",
+        "    self.name = name\n",
+        "    self.email = email\n",
+        "    self.order_history = []  #List to track all orders placed by the customer\n",
+        "\n",
+        "  def place_order(self,order):\n",
+        "    self.order_history.append(order)\n",
+        "\n",
+        "  def view_order_history(self):  #set the format when show the order history\n",
+        "    print(f\"Order History for {self.name}:\")\n",
+        "    for order in self.order_history:\n",
+        "      order.view_order()\n",
+        "\n",
+        "#4. create restaurant class\n",
+        "class Restaurant:\n",
+        "  def __init__(self):  #list the dish object inside menu list\n",
+        "    self.menu = []\n",
+        "    self.orders = []  # list all order placed\n",
+        "\n",
+        "  def add_dish_to_menu(self,dish): #add the dish to menu\n",
+        "    self.menu.append(dish)\n",
+        "\n",
+        "  def place_order(self,order):  #add order to orders list\n",
+        "    self.orders.append(order)\n",
+        "\n",
+        "  def view_menu(self):  #show all dishes on menu\n",
+        "    print(\"----- Restaurant Menu -----\")\n",
+        "    for dish in self.menu:\n",
+        "      print(dish)\n",
+        "    print(\"---------------------------\\n\")\n",
+        "\n",
+        "  def view_orders(self):  # show all order are placed in restaurant\n",
+        "    print(\"===== All Orders =====\")\n",
+        "    for order in self.orders:\n",
+        "      order.view_order()\n",
+        "    print(\"======================\\n\")\n"
+      ],
+      "metadata": {
+        "id": "latNiHB52kjZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Try"
+      ],
+      "metadata": {
+        "id": "cZVyFDnGJ5If"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# start to setting the restaurant\n",
+        "if __name__ == \"__main__\":\n",
+        "  my_restaurant = Restaurant()\n",
+        "\n",
+        "  # Add some dishes to the menu\n",
+        "  dish1 = Dish(\"Spaghetti Bolognese\", 12.99, \"Main Course\")\n",
+        "  dish2 = Dish(\"Tiramisu\", 6.50, \"Dessert\")\n",
+        "  dish3 = Dish(\"Caesar Salad\", 8.99, \"Starter\")\n",
+        "\n",
+        "  my_restaurant.add_dish_to_menu(dish1)\n",
+        "  my_restaurant.add_dish_to_menu(dish2)\n",
+        "  my_restaurant.add_dish_to_menu(dish3)\n",
+        "\n",
+        "  # Create a customer\n",
+        "  customer1 = Customer(\"Alice\",\"alice@example.com\")\n",
+        "\n",
+        "  #use the system to show the menu\n",
+        "  my_restaurant.view_menu()\n",
+        "\n",
+        "  order1 = Order(customer1)\n",
+        "  order1.add_dish(dish1)\n",
+        "  order1.add_dish(dish2)\n",
+        "  my_restaurant.place_order(order1)\n",
+        "\n",
+        "  my_restaurant.view_orders()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "sUQE-E_-KCxx",
+        "outputId": "72ecde40-d923-44e2-c823-89102a9d0678"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "----- Restaurant Menu -----\n",
+            "Spaghetti Bolognese (Main Course) - £12.99\n",
+            "Tiramisu (Dessert) - £6.50\n",
+            "Caesar Salad (Starter) - £8.99\n",
+            "---------------------------\n",
+            "\n",
+            "===== All Orders =====\n",
+            "Order ID: 1\n",
+            "Customer: Alice\n",
+            "Ordered Dishes:\n",
+            " - Spaghetti Bolognese (Main Course) - £12.99\n",
+            "status:Pending\n",
+            " - Tiramisu (Dessert) - £6.50\n",
+            "status:Pending\n",
+            "Total: £19.49\n",
+            "\n",
+            "======================\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# add discount in order1\n",
+        "order1.apply_discount(1,60)\n",
+        "my_restaurant.view_orders()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YpHKruzzG8kQ",
+        "outputId": "b9e4e7b5-a029-4eb0-895e-473c117cb8ef"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "===== All Orders =====\n",
+            "Order ID: 1\n",
+            "Customer: Alice\n",
+            "Ordered Dishes:\n",
+            " - Spaghetti Bolognese (Main Course) - £12.99\n",
+            "status:Pending\n",
+            " - Tiramisu (Dessert) - £6.50\n",
+            "status:Pending\n",
+            "Total: £19.49\n",
+            "\n",
+            "======================\n",
+            "\n"
+          ]
+        }
+      ]
+    }
+  ]
+}

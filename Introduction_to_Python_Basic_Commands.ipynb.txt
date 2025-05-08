@@ -1,0 +1,636 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Test 1:Assigning Values to Variables"
+      ],
+      "metadata": {
+        "id": "RwNR1dz_ABIB"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZNmPAhL_k_B3",
+        "outputId": "6472730f-1250-46e1-cd48-53c8b80a1515"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "15 10 go\n"
+          ]
+        }
+      ],
+      "source": [
+        "#1.create variables\n",
+        "v_1 = 15\n",
+        "v_2 = 10\n",
+        "v_3 = \"go\"\n",
+        "# set the data of object\n",
+        "#use [print] to show the result\n",
+        "print(v_1, v_2, v_3)"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 2:Data Types"
+      ],
+      "metadata": {
+        "id": "tyGu8-_ooxDx"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#2.declare variable\n",
+        "age = 20\n",
+        "\n",
+        "#print d.type\n",
+        "#[type()] will show the data type of object\n",
+        "print(type(age))\n",
+        "\n",
+        "\n",
+        "#turn age become float and print d.type\n",
+        "age = float(age)\n",
+        "print(type(age))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_NyErOeAo0VN",
+        "outputId": "141f84cd-f174-4170-9ba5-fc8a1acd5ca0"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class 'int'>\n",
+            "<class 'float'>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#3.declare variable with float adn check d.type\n",
+        "is_student = False\n",
+        "print(type(is_student))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "OWDT-aPYpZXg",
+        "outputId": "c0da2bda-ff48-450f-c7aa-2bf7e527450e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class 'bool'>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 3: Basic input and output"
+      ],
+      "metadata": {
+        "id": "dmqu9UDDpzyw"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#4.Ask name of user\n",
+        "name = input(\"What is your name?\")\n",
+        "#print a message by use specified form\n",
+        "print(\"Hello, \", name )"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "lNh1Dj2Cp-uF",
+        "outputId": "d1287b5a-1bcc-43ef-a124-3dce455265db"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "What is your name?VT\n",
+            "Hello,  VT\n",
+            "How old are you?21\n",
+            "You can vote.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#5.Ask the age of user\n",
+        "age = input(\"How old are you?\")\n",
+        "if int(age) >=18:\n",
+        "  print(\"You can vote.\")\n",
+        "else:\n",
+        "  print(\"You are minor.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "SGfFvBjcrqpt",
+        "outputId": "f01a7a32-d6de-404f-c241-e4d2686b1e57"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "How old are you?21\n",
+            "You are eligible to vote.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 4: Converting Data Types"
+      ],
+      "metadata": {
+        "id": "BsTKOVhOtZ1M"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#6.Ask one number from user\n",
+        "number = input(\"Please give us one number:\")\n",
+        "number_2 = int(number)\n",
+        "print(number_2 **2)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "--pT-nvqtiWf",
+        "outputId": "b94cbf4d-a70e-4e15-edf2-f71421fdb6f1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Please give us one number:5\n",
+            "25\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#7.Declare variable that takes string\n",
+        "float_str = input(\"Enter float value\")\n",
+        "#convert str to float\n",
+        "float_number = float(float_str)\n",
+        "#print value multiplied x 2\n",
+        "print(float_number * 2)\n",
+        "\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gLp3pJ-pxANY",
+        "outputId": "75786527-d534-4b91-96ed-9cfaea11691a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter float value2.4\n",
+            "4.8\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 5: Arithmetic Operators"
+      ],
+      "metadata": {
+        "id": "W9UZ2G2-2alV"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#8.Perform the following arithmetic operations\n",
+        "eq_1 = 45+67\n",
+        "eq_2 = 156-89\n",
+        "eq_3 = 12*7\n",
+        "eq_4 = 100/4\n",
+        "eq_5 = 10%3\n",
+        "eq_6 = 3**4\n",
+        "\n",
+        "print(eq_1, eq_2, eq_3, eq_4, eq_5,eq_6)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "oNmr7JAJ2h2z",
+        "outputId": "531f5466-44de-4610-cb17-c31cc850fdc5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "112 67 84 25.0 1 81\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 6: Comparison Operators"
+      ],
+      "metadata": {
+        "id": "qZD26Kh-4OAA"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#9.Compare 2 numbers use comparison operators(==,!=,<,>,<=,>=)\n",
+        "a = 10\n",
+        "b = 20\n",
+        "print(a == b)\n",
+        "print(a != b)\n",
+        "print(a < b)\n",
+        "print(a > b)\n",
+        "print(a <= b)\n",
+        "print(a >= b)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "NlXy1X_64UUv",
+        "outputId": "af243036-690d-45d0-fc42-c8146ab4ced3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "False\n",
+            "True\n",
+            "True\n",
+            "False\n",
+            "True\n",
+            "False\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#10.Ask user two number and checks\n",
+        "number_1 = int(input(\"Please give us one number:\"))\n",
+        "number_2 = int(input(\"Please give us one number:\"))\n",
+        "if number_1 > number_2:\n",
+        "  print (\"number_1 is bigger than number_2\")\n",
+        "if number_1 == number_2:\n",
+        "  print(\"number_1 is equal to number_2\")\n",
+        "if number_1 < number_2:\n",
+        "  print(\"number_1 is smaller than number_2\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6yKtaPQe6ozO",
+        "outputId": "d03db43e-5eaf-4478-c1ad-36c0a03027ef"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Please give us one number:23\n",
+            "Please give us one number:11\n",
+            "number_1 is bigger than number_2\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task7:Logical Operators"
+      ],
+      "metadata": {
+        "id": "j1Q5fefGJjJu"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#11.Check number by using the [and] logical operator\n",
+        "number_1 = int(input(\"Please give us one number:\"))\n",
+        "\n",
+        "if number_1 > 10 and number_1 < 20:\n",
+        "  print(\"Number is between 10 and 20\")\n",
+        "else:\n",
+        "  print(\"Number is not between 10 and 20\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LoVSSEuaJovq",
+        "outputId": "78b009d3-f0da-4d62-8047-9052a0b2e1c5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Please give us one number:13\n",
+            "Number is between 10 and 20\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#12.Checks number by using [or] logical operator\n",
+        "number_1 = int(input(\"Please give us one number:\"))\n",
+        "\n",
+        "if number_1 < 5 or number_1 > 50:\n",
+        "  print(\"Number is not between 5 and 50\")\n",
+        "else:\n",
+        "  print(\"Number is between 5 and 50\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "xLfwMZTvK-63",
+        "outputId": "762369ea-0b9a-4242-d7f9-a43782cf8452"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Please give us one number:90\n",
+            "Number is not between 5 and 50\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 8:Conditional Statements"
+      ],
+      "metadata": {
+        "id": "BfQ4ufdxLmKb"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#13.Ask user age and check is that adult\n",
+        "age = int(input(\"How old are you?\"))\n",
+        "if age >= 18:\n",
+        "  print(\"You are an adult.\")\n",
+        "else:\n",
+        "  print(\"You are a minor.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "TUV_EiMrLsFN",
+        "outputId": "815e0b48-6cd1-43ae-860d-0dfdca7ab886"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "How old are you?21\n",
+            "You are an adult.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#14.Ask user a number and check then print a message\n",
+        "number = int(input(\"Please give us one number:\"))\n",
+        "if number % 3 == 0 and number % 5 == 0:\n",
+        "  print(\"FizzBuzz.\")\n",
+        "if number % 3 == 0 and number % 5 > 0:\n",
+        "  print(\"Fizz.\")\n",
+        "if number % 3 > 0 and number % 5 == 0:\n",
+        "  print(\"Buzz.\")\n",
+        "\n",
+        "else:number % 3 and 5 >= 0\n",
+        "print(\"Number is not divisible by 3 or 5.\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JOr5dTWkMRv1",
+        "outputId": "1d440a6b-fbf4-4d22-9e29-97a3a8bf853d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Please give us one number:9\n",
+            "Fizz.\n",
+            "Number is not divisible by 3 or 5.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Task 9:Loops"
+      ],
+      "metadata": {
+        "id": "IAey6wcz8TNo"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#15.for loop and print number from 1 to 10\n",
+        "for i in range(1,11):\n",
+        "  print(i)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZHSj03IK8Wg4",
+        "outputId": "24cba8ca-67de-4af8-f5e8-ea1e879698ce"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "1\n",
+            "2\n",
+            "3\n",
+            "4\n",
+            "5\n",
+            "6\n",
+            "7\n",
+            "8\n",
+            "9\n",
+            "10\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#16.while loop and print even number from 2 to 20\n",
+        "i = 2\n",
+        "while i <= 20:\n",
+        "  print(i)\n",
+        "  i += 2"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6JgzrfvN-AmA",
+        "outputId": "cfafd3f5-d6fa-464a-c8e9-2d1d75341ee8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "2\n",
+            "4\n",
+            "6\n",
+            "8\n",
+            "10\n",
+            "12\n",
+            "14\n",
+            "16\n",
+            "18\n",
+            "20\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#17.Ask user for a number n\n",
+        "n = int(input(\"Enter a number\"))\n",
+        "#print all numbers from 1 to n are divisible by 4\n",
+        "for i in range(1, n + 1):\n",
+        "  if i % 4 == 0:\n",
+        "    print(i)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1av6CZCB-wTU",
+        "outputId": "bfbe028b-a311-407a-a8e8-a74b627599da"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter a number50\n",
+            "4\n",
+            "8\n",
+            "12\n",
+            "16\n",
+            "20\n",
+            "24\n",
+            "28\n",
+            "32\n",
+            "36\n",
+            "40\n",
+            "44\n",
+            "48\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
